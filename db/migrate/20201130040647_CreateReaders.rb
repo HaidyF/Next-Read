@@ -4,6 +4,7 @@ class CreateReaders < ActiveRecord::Migration
       t.string :username
       t.string :email
       t.string :password_digest
+      t.integer :book_id
     end
   end
 end

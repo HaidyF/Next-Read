@@ -5,5 +5,6 @@ class CreateBooks < ActiveRecord::Migration
       t.string :genre
       t.string :review
       t.float :rating
+      t.integer :reader_id
   end
 end
