@@ -1,2 +1,15 @@
 
+Editing <%= @book.name %><br><br>
+<form method="POST" action="/books/<%= @book.id %>">
+    <input type="hidden" name="_method" value="PATCH">
+    <label>Book Name:</label>
+    <input type="text" name="book[name]" value="<%= @book.name %>">
+    <label>Book Genre:</label>
+    <input type="text" name="Book[genre]" value="<%= @book.genre %>">
+    <label>Book Review:</label>
+    <input type="text" name="book[review]" value="<%= @book.review %>">
+    <label>Book Rating:</label>
+    <input type="text" name="book[rating]" value="<%= @book.rating %>">
 
+    <input type="submit" value="Edit Book">
+</form>
