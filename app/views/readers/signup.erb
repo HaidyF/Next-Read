@@ -1,0 +1,13 @@
+<h3> Sign Up </h3>
+<% if @errors %>
+    <% @errors.each do |e| %>
+        <%= e %><br>
+    <% end %>
+<% end %>
+
+<form method="POST" action="/signup">
+Username: <input type="text" name="user[username]" required><br>
+Email: <input type="email" name="user[email]" required ><br>
+Password: <input type="password" name="user[password]" required>
+<input type="submit" value="Create Accountr">
+</form>

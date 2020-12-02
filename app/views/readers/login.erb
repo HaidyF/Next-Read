@@ -1,0 +1,11 @@
+<%if flash[:message] %>
+    <h3><%= flash[:message] %></h3>
+<% end %>
+
+<form method="POST" action="/signin">
+Username: <input type="text" name="user[username]"><br>
+OR<br>
+Email: <input type="email" name="user[email]"><br>
+Password: <input type="password" name="user[password]">
+<input type="submit" value="Sign In">
+</form>
