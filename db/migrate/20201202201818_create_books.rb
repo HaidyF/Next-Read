@@ -1,11 +1,12 @@
-class Createbooks < ActiveRecord::Migration
+class CreateBooks < ActiveRecord::Migration
   def change
+        drop_table :books
         create_table :books do |t|
           t.string :name
           t.string :genre
           t.string :review
           t.float :rating
-          t.integer :reader_id
+          t.integer :user_id
         end
   end
 end

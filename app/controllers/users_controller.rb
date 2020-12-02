@@ -1,7 +1,7 @@
-class ReadersController < ApplicationController
+class UsersController < ApplicationController
     
     get '/signup' do 
-        erb :'readers/signup'
+        erb :'users/signup'
     end 
 
     post '/signup' do 
@@ -11,12 +11,12 @@ class ReadersController < ApplicationController
             redirect to "/users/#{user.id}"
         else 
             @errors = user.errors.full_messages
-            erb :'readers/signup'
+            erb :'users/signup'
         end 
     end 
 
     get '/login' do 
-        erb :'readers/login'
+        erb :'users/login'
     end
 
     get '/logout' do 
@@ -31,14 +31,14 @@ class ReadersController < ApplicationController
             redirect to "/users/#{user.id}"
         else 
             flash[:message] = "Login unsuccessful. Please try again."
-            redirect to '/loginin'
+            redirect to '/login'
         end
     end 
 
-    get '/readers/:id' do 
+    get '/users/:id' do 
         @user = User.find_by_id(params[:id])
         @movies = @user.movies
-        erb :'readers/account'
+        erb :'users/account'
     end
 
 end

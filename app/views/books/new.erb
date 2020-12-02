@@ -2,11 +2,12 @@
   </head>
   <body>
     <h1>Create a New Book</h1>
-    <form method="POST" action="/books/">
-      <p>Name:<input type="text" name="name"></p>
-      <p>Genre:<input type="text" name="genre"></p>
-      <p>Review:<input type="text" name="review"></p>
-      <p>Rating:<input type="text" name="rating">
+    <form method="POST" action="/books">
+      <p>Name:<input type="text" name="book[name]"></p>
+      <p>Genre:<input type="text" name="book[genre]"></p>
+      <p>Review:<input type="text" name="book[review]"></p>
+      <p>Rating:<input type="text" name="book[rating]"></p>
+
       <!-- Add icon library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 

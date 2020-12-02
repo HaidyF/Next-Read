@@ -1,41 +1,42 @@
 class BooksController < ApplicationController
     
-    get '/all' do
+    get '/books' do
         @books = Book.all
-        erb :'books/show'
+        erb :'books/index'
     end 
 
-    get '/new' do
-        # redirect_if_not_logged_in
+    get '/books/new' do
+        #redirect_if_not_logged_in
         erb :'books/new'
     end
 
-    post '/' do
-        # redirect_if_not_logged_in
-        @book = Book.create(params[:book])
-        redirect to "/all"
+    post '/books' do
+        #redirect_if_not_logged_in
+        
+        book = Book.create(params[:book])
+        redirect to "/books"
     end 
 
-    get '/:id' do 
+    get '/books/:id' do 
         @book = Book.find_by_id(params[:id])
         erb :'books/show'
     end 
 
-    get '/:id/edit' do 
-        # redirect_if_not_logged_in
+    get '/books/:id/edit' do 
+        #redirect_if_not_logged_in
         @book = Book.find_by_id(params[:id])
         erb :'books/edit'
     end 
 
-    patch '/:id' do 
-        # redirect_if_not_logged_in
+    patch '/books/:id' do 
+        #redirect_if_not_logged_in
         book = Book.find_by_id(params[:id])
         book.update(params[:book])
-        redirect to "/books/#{@book.id}"
+        redirect to "/books/#{book.id}"
     end
 
-    delete '/:id' do 
-        # redirect_if_not_logged_in
+    delete '/books/:id' do 
+        redirect_if_not_logged_in
         book = Book.find_by_id(params[:id])
         book.destroy
         redirect to '/books'
