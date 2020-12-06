@@ -7,6 +7,7 @@ class BooksController < ApplicationController
 
     get '/books/new' do
         #redirect_if_not_logged_in
+        #binding.pry
         erb :'books/new'
     end
 
@@ -25,21 +26,40 @@ class BooksController < ApplicationController
     get '/books/:id/edit' do 
         #redirect_if_not_logged_in
         @book = Book.find_by_id(params[:id])
+        @user = User.find_by_id(params[:id])
+        if @book.user_id == @user.id
         erb :'books/edit'
+
+        else 
+        erb :'books/error'
+        
+        end
     end 
 
     patch '/books/:id' do 
         #redirect_if_not_logged_in
+        if @book.user_id == @user.id
         book = Book.find_by_id(params[:id])
         book.update(params[:book])
         redirect to "/books/#{book.id}"
+
+        else 
+        erb :'books/error'
+
+        end
     end
 
     delete '/books/:id' do 
-        redirect_if_not_logged_in
+        #redirect_if_not_logged_in
+        if @book.user_id == @user.id
         book = Book.find_by_id(params[:id])
         book.destroy
         redirect to '/books'
+
+        else 
+        erb :'books/error'
+
+        end
     end 
 
 end

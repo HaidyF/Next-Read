@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
     
-    get '/signup' do 
+    get '/users/signup' do 
         erb :'users/signup'
     end 
 
-    post '/signup' do 
+    post '/users/signup' do 
         user = User.new(params[:user])
         if user.save
             session[:user_id] = user.id
@@ -15,20 +15,21 @@ class UsersController < ApplicationController
         end 
     end 
 
-    get '/login' do 
+    get '/users/login' do 
         erb :'users/login'
     end
 
-    get '/logout' do 
+    get '/users/logout' do 
         session.clear
         redirect to '/login'
     end 
 
-    post '/signin' do 
+    post '/users/login' do 
+       
         !params[:user][:username].blank? ? user = User.find_by_username(params[:user][:username]) : user = User.find_by_email(params[:user][:email])
         if user && user.authenticate(params[:user][:password])
             session[:user_id] = user.id
-            redirect to "/users/#{user.id}"
+            redirect to "/users/#{@user.id}"
         else 
             flash[:message] = "Login unsuccessful. Please try again."
             redirect to '/login'
@@ -37,7 +38,7 @@ class UsersController < ApplicationController
 
     get '/users/:id' do 
         @user = User.find_by_id(params[:id])
-        @movies = @user.movies
+        # @movies = @user.movies
         erb :'users/account'
     end
 
