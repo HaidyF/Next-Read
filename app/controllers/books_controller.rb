@@ -7,7 +7,7 @@ class BooksController < ApplicationController
 
     get '/books/new' do
         #redirect_if_not_logged_in
-        #binding.pry
+        binding.pry
         erb :'books/new'
     end
 
