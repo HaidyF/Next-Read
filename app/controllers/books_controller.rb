@@ -7,7 +7,7 @@ class BooksController < ApplicationController
 
     get '/books/new' do
         #redirect_if_not_logged_in
-        binding.pry
+    binding.pry
         erb :'books/new'
     end
 
@@ -49,7 +49,7 @@ class BooksController < ApplicationController
         end
     end
 
-    delete '/books/:id' do 
+    delete '/books/:id/delete' do 
         #redirect_if_not_logged_in
         if @book.user_id == @user.id
         book = Book.find_by_id(params[:id])

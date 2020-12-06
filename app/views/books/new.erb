@@ -3,6 +3,7 @@
   <body>
     <h1>Create a New Book</h1>
     <form method="POST" action="/books">
+    <input type="hidden" name="book[user_id]" value="<%= current_user.id %>">
       <p>Name:<input type="text" name="book[name]"></p>
       <p>Genre:<input type="text" name="book[genre]"></p>
       <p>Review:<input type="text" name="book[review]"></p>

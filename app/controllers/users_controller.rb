@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
     get '/users/logout' do 
         session.clear
-        redirect to '/login'
+        redirect to '/users/login'
     end 
 
     post '/users/login' do 
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
         !params[:user][:username].blank? ? user = User.find_by_username(params[:user][:username]) : user = User.find_by_email(params[:user][:email])
         if user && user.authenticate(params[:user][:password])
             session[:user_id] = user.id
-            redirect to "/users/#{@user.id}"
+            redirect to "/users/#{user.id}"
         else 
             flash[:message] = "Login unsuccessful. Please try again."
             redirect to '/users/login'
