@@ -73,7 +73,7 @@ class BooksController < ApplicationController
             session.clear
             flash[:message] = "You have successfully deleted your account!"
         
-        else redirect to '/'
+        else redirect to '/books'
         end
      end
 
