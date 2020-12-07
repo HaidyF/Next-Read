@@ -7,7 +7,7 @@ class BooksController < ApplicationController
 
     get '/books/new' do
         redirect_if_not_logged_in
-    binding.pry
+    # binding.pry
         erb :'books/new'
     end
 
@@ -52,28 +52,28 @@ class BooksController < ApplicationController
         end
     end
 
-    delete '/books/:id/delete' do 
-        redirect_if_not_logged_in
+    # delete '/books/:id/delete' do 
+    #     redirect_if_not_logged_in
 
-        books = Book.all
-        books.each do |b|
-            
-        if b.user_id == current_user.id
-        b.destroy
-        redirect to '/books'
+    #     books = Book.all
+    #     books.each do |b|
 
-        else 
-        erb :'books/error'
-        end
-        end
+    #     if b.user_id == current_user.id
+    #     b.destroy
+    #     redirect to '/books'
 
-        if current_user
-            current_user.destroy
-            session.clear
-            flash[:message] = "You have successfully deleted your account!"
+    #     else 
+    #     erb :'books/error'
+    #     end
+    #     end
+
+    #     if current_user
+    #         current_user.destroy
+    #         session.clear
+    #         flash[:message] = "You have successfully deleted your account!"
         
-        else redirect to '/'
-        end
-    end
+    #     else redirect to '/'
+    #     end
+     end
 
 end
