@@ -35,6 +35,7 @@ class BooksController < ApplicationController
         erb :'books/error'
         
         end
+     end
     end 
 
     patch '/books/:id' do 
@@ -52,28 +53,28 @@ class BooksController < ApplicationController
         end
     end
 
-    # delete '/books/:id/delete' do 
-    #     redirect_if_not_logged_in
+    delete '/books/:id/delete' do 
+        redirect_if_not_logged_in
 
-    #     books = Book.all
-    #     books.each do |b|
+        books = Book.all
+        books.each do |b|
 
-    #     if b.user_id == current_user.id
-    #     b.destroy
-    #     redirect to '/books'
+        if b.user_id == current_user.id
+        b.destroy
+        redirect to '/books'
 
-    #     else 
-    #     erb :'books/error'
-    #     end
-    #     end
+        else 
+        erb :'books/error'
+        end
+        end
 
-    #     if current_user
-    #         current_user.destroy
-    #         session.clear
-    #         flash[:message] = "You have successfully deleted your account!"
+        if current_user
+            current_user.destroy
+            session.clear
+            flash[:message] = "You have successfully deleted your account!"
         
-    #     else redirect to '/'
-    #     end
+        else redirect to '/'
+        end
      end
 
 end
