@@ -20,6 +20,9 @@
 <br>
 <br>
 
-    <a href="/books/<%= @book.id %>/delete">Delete Book</a>
+<form method="POST" action="/books/<%=@book.id%>">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete Book">
+</form>
 
 </body>

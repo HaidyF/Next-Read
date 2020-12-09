@@ -32,47 +32,35 @@ class BooksController < ApplicationController
 
         else 
         erb :'books/error'
-        
         end
     end 
 
     patch '/books/:id' do 
         redirect_if_not_logged_in
-
-        current_book = Book.find_by_id(params[:id])
-        current_book.each do |c|
-        if c.user_id == current_user.id
-        c.update(params[:book])
+        
+        book = Book.find_by_id(params[:id])
+        if book.user == current_user
+        book.update(params[:book])
         redirect to "/books/#{book.id}"
 
         else 
         erb :'books/error'
         end
-        end
     end
 
     delete '/books/:id' do 
+
         redirect_if_not_logged_in
-
-        @books = Book.all
-        @books.each do |b|
-
-        if b.user_id == current_user.id
-        b.destroy
-        redirect to '/books'
+    
+        book = Book.find_by_id(params[:id]) 
+        if book.user == current_user
+            book.destroy
+            redirect to '/books'
 
         else 
-        erb :'books/error'
+            erb :'books/error'
         end
-        end
-
-        if current_user
-            current_user.destroy
-            session.clear
-            flash[:message] = "You have successfully deleted your account!"
         
-        else redirect to '/books'
-        end
      end
 
 end

@@ -1,4 +1,6 @@
-<%flash[:message] = "Login unsuccessful. Please try again."%>
+<%if flash[:message] %>
+<%=flash[:message]%>
+<%end%>
 <h3>Log In</h3>
 <br>
 <form method="POST" action="/users/login">
