@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 
     get '/users/:id' do 
         @user = User.find_by_id(params[:id])
-        @books = Book.all
+        @books = @user.books
         erb :'users/account'
     end
 end

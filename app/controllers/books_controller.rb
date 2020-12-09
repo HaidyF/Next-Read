@@ -7,7 +7,6 @@ class BooksController < ApplicationController
 
     get '/books/new' do
         redirect_if_not_logged_in
-    # binding.pry
         erb :'books/new'
     end
 
@@ -19,8 +18,11 @@ class BooksController < ApplicationController
     end 
 
     get '/books/:id' do 
-        @book = Book.find_by_id(params[:id])
+        if @book = Book.find_by_id(params[:id])
         erb :'books/show'
+        else
+        erb :'books/error'
+        end
     end 
 
     get '/books/:id/edit' do 
@@ -50,7 +52,6 @@ class BooksController < ApplicationController
     end
 
     delete '/books/:id' do 
-
         redirect_if_not_logged_in
     
         book = Book.find_by_id(params[:id]) 

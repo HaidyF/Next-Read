@@ -12,11 +12,12 @@ Editing <%= @book.name %><br><br>
     <input type="text" name="book[rating]" value="<%= @book.rating %>">
 
     <input type="submit" value="Edit Book">
+    </form>
     <br>
     <br>
-    
+
 <form method="POST" action="/books/<%=@book.id%>">
     <input type="hidden" name="_method" value="DELETE">
     <input type="submit" value="Delete Book">
-</form>
+
 </form>
