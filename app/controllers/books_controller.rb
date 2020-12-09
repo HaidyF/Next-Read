@@ -51,11 +51,11 @@ class BooksController < ApplicationController
         end
     end
 
-    delete '/books/:id/delete' do 
+    delete '/books/:id' do 
         redirect_if_not_logged_in
 
-        books = Book.all
-        books.each do |b|
+        @books = Book.all
+        @books.each do |b|
 
         if b.user_id == current_user.id
         b.destroy
