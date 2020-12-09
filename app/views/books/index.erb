@@ -2,13 +2,20 @@
   <tr>
     <th>Books</th>
   </tr>
-
+<table border="1">
+<thead>
+    <th>Name</th>
+    <th>Review</th>
+    <th>Rating</th>
+    <th></th>
+    <th></th>
+    </thead>
   <% @books.each do |book| %>
-  <table border="1">
     <tr>
       <td><%= book.name %></td>
       <td><%= book.review %></td>
        <td><%= book.rating %></td>
+      
     </tr>
   <% end %>
 </table>
