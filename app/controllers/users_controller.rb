@@ -41,5 +41,4 @@ class UsersController < ApplicationController
         @books = Book.all
         erb :'users/account'
     end
-
 end

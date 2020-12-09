@@ -31,6 +31,7 @@ class BooksController < ApplicationController
         erb :'books/edit'
 
         else 
+        flash[:message] = "Please sign in to your account!"
         erb :'books/error'
         end
     end 
