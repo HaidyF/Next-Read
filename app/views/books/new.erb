@@ -1,4 +1,10 @@
 <title>Create a New Book</title>
+<% if @errors %>
+    <% @errors.each do |e| %>
+        <%= e %><br>
+    <% end %>
+<% end %>
+
   </head>
   <body>
     <h1>Create a New Book</h1>

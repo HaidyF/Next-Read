@@ -12,16 +12,20 @@ class BooksController < ApplicationController
 
     post '/books' do
         redirect_if_not_logged_in
-        
-        book = Book.create(params[:book])
+        book = Book.new(params[:book])
+        if book.save
         redirect to "/books"
+        else 
+        @errors = book.errors.full_messages
+        erb :'books/new'
+        end
     end 
 
     get '/books/:id' do 
         if @book = Book.find_by_id(params[:id])
-        erb :'books/show'
+            erb :'books/show'
         else
-        erb :'books/error'
+            erb :'books/error'
         end
     end 
 
@@ -29,40 +33,36 @@ class BooksController < ApplicationController
         redirect_if_not_logged_in
 
         @book = Book.find_by_id(params[:id])
-        if @book.user_id == current_user.id
+        redirect_if_not_authorized
         erb :'books/edit'
-
-        else 
-        flash[:message] = "Please sign in to your account!"
-        erb :'books/error'
-        end
     end 
 
     patch '/books/:id' do 
         redirect_if_not_logged_in
         
-        book = Book.find_by_id(params[:id])
-        if book.user == current_user
-        book.update(params[:book])
-        redirect to "/books/#{book.id}"
+        @book = Book.find_by_id(params[:id])
+        
+        redirect_if_not_authorized
 
-        else 
-        erb :'books/error'
-        end
+        @book.update(params[:book])
+        redirect to "/books/#{@book.id}"
+
     end
 
     delete '/books/:id' do 
         redirect_if_not_logged_in
-    
-        book = Book.find_by_id(params[:id]) 
-        if book.user == current_user
-            book.destroy
-            redirect to '/books'
+       
+        @book = Book.find_by_id(params[:id]) 
 
-        else 
-            erb :'books/error'
-        end
+        redirect_if_not_authorized
         
+        @book.destroy
+        redirect to '/books'
+
      end
 
+     get '/books/error' do
+
+     erb :books/error
+    end
 end

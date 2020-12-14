@@ -27,6 +27,13 @@ class ApplicationController < Sinatra::Base
       flash[:message] = "Please log in!"
       redirect to '/users/login' if !logged_in?
     end
+
+    def redirect_if_not_authorized
+      if @book.user != current_user
+        flash[:message] = "You are not authorized to do this action!"
+        redirect to '/books/error'
+      end
+    end
   end
 
 end
